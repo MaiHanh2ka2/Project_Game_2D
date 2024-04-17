@@ -30,10 +30,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isMoving = rb.velocity.x != 0;
-
-        anim.SetBool("isMoving", isMoving);
-
+        AnimationControllers();
 
         CollisionChecks();
         InputChecks();
@@ -44,6 +41,15 @@ public class Player : MonoBehaviour
         }
 
         Move();
+    }
+
+    private void AnimationControllers()
+    {
+        bool isMoving = rb.velocity.x != 0;
+
+        anim.SetBool("isMoving", isMoving);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     private void InputChecks()

@@ -508,7 +508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rb: {fileID: 1312892982}
   jumpForce: 10
   whatIsGround:
     serializedVersion: 2
