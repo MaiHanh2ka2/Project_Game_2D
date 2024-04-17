@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 147035621}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: -3.67, z: 0}
+  m_LocalPosition: {x: -3.09, y: -4.13, z: 0}
   m_LocalScale: {x: 5.5383606, y: 1.961626, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -469,7 +469,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1312892979}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0b5e0f0621dd5d14bac1648100577263, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -513,6 +513,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckDistance: 2.98
+  wallCheckDistance: 0.41
 --- !u!95 &1312892985
 Animator:
   serializedVersion: 5
@@ -545,6 +546,7 @@ GameObject:
   - component: {fileID: 1622671686}
   - component: {fileID: 1622671685}
   - component: {fileID: 1622671687}
+  - component: {fileID: 1622671688}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
@@ -613,7 +615,7 @@ Transform:
   m_GameObject: {fileID: 1622671684}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.99, y: -3.67, z: 0}
+  m_LocalPosition: {x: -10.14, y: -4.09, z: 0}
   m_LocalScale: {x: 5.5383606, y: 1.961626, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -664,6 +666,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0039575, y: 1.0103827}
   m_EdgeRadius: 0
+--- !u!95 &1622671688
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622671684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba982b099f926e647a702d6ebfc54c17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
