@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     [Header("Move info")]
     public float moveSpeed;
     public float jumpForce;
+    public Vector2 wallJumpDirection;
 
     private bool canDoubleJump = true;
-
+    private bool canMove;
 
     private float movingInput;
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded)
             canDoubleJump = true;
+        canMove = true;
 
         if (canWallSlide)
         {
@@ -53,12 +55,8 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
         }
 
-        if (!isWallDetected)
-        {
-            isWallSliding = false;
-            Move();
-        }
-            
+        
+        Move();
 
 
         
@@ -71,6 +69,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isWallSliding", isWallSliding);
+        anim.SetBool("isWallDetected", isWallDetected);
         anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
@@ -90,7 +89,11 @@ public class Player : MonoBehaviour
 
     private void JumpButton()
     {
-        if (isGrounded)
+        if (isWallSliding)
+        {
+            WallJump();
+        }
+        else if (isGrounded)
         {
             Jump();
         }
@@ -99,13 +102,21 @@ public class Player : MonoBehaviour
             canDoubleJump = false;
             Jump();
         }
+
+        canWallSlide = false;
     }
 
     private void Move()
     {
+        if (canMove)
         rb.velocity = new Vector2(moveSpeed * movingInput, rb.velocity.y);
     }
 
+    private void WallJump()
+    {
+        canMove = false; 
+        rb.velocity = new Vector2(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);
+    }
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -113,15 +124,15 @@ public class Player : MonoBehaviour
 
     private void FlipController()
     {
-        if (facingRight && movingInput < 0)
+        if (facingRight && rb.velocity.x < 0)
             Flip();
-        else if (!facingRight && movingInput > 0)
+        else if (!facingRight && rb.velocity.x > 0)
             Flip();
     }
 
     public  void Flip()
     {
-        facingDirection = facingDirection * 1;
+        facingDirection = facingDirection * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
     }
@@ -135,13 +146,16 @@ public class Player : MonoBehaviour
             canWallSlide = true;
 
         if (!isWallDetected)
+        {
+            isWallSliding = false;
             canWallSlide = false;
+        }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y * groundCheckDistance));
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x * wallCheckDistance * facingDirection, transform.position.y));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundCheckDistance));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + wallCheckDistance * facingDirection, transform.position.y));
     }
 
 
