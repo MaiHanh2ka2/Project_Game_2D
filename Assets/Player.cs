@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
     public float groundCheckDistance;
     private bool isGrounded;
 
+
+
+    private bool facingRight = true;
+    private int facingDirection = 1;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,14 +36,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         AnimationControllers();
-
+        FlipController();
         CollisionChecks();
         InputChecks();
 
         if (isGrounded)
-        {
             canDoubleJump = true;
-        }
 
         Move();
     }
@@ -84,6 +87,21 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+
+    private void FlipController()
+    {
+        if (facingRight && movingInput < 0)
+            Flip();
+        else if (!facingRight && movingInput > 0)
+            Flip();
+    }
+
+    public  void Flip()
+    {
+        facingDirection = facingDirection * 1;
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
     }
 
     private void CollisionChecks()
