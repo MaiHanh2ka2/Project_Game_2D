@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Trap_Fire : Trap
 {
-    public bool hasSwitcher;
     public bool isWoking;
     private Animator anim;
 
@@ -14,7 +13,7 @@ public class Trap_Fire : Trap
     {
         anim = GetComponent<Animator>();
 
-        if(!hasSwitcher)
+        if(transform.parent == null )
             InvokeRepeating("FireSwitch", 0, repeatRate);
     }
 
@@ -30,7 +29,8 @@ public class Trap_Fire : Trap
 
     public void FireSwitchAfter(float seconds)
     {
-        FireSwitch();
+        CancelInvoke();
+        isWoking = false;
         Invoke("FireSwitch", seconds);
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
