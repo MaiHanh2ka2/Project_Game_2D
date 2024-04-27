@@ -26,11 +26,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float cayoteJumpTime;
                      private float cayoteJumpCounter;
                      private bool canHaveCayoteJump;
+    [Header("Knockback info")]
+    [SerializeField] private Vector2 knockBackDirection;
+    [SerializeField] private float knockbackTime;
+    [SerializeField] private float knockbackProtectionTime;
+                     private bool isKnocked;
+                     private bool canBeKnocked = true;
 
     [Header("Collision info")]
-    public LayerMask whatIsGround;
-    public float groundCheckDistance;
-    public float wallCheckDistance;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private float wallCheckDistance;
+    [SerializeField] private Transform enemyCheck;
+    [SerializeField] private float enemyCheckRadius;
     private bool isGrounded;
     private bool isWallDetected;
     private bool canWallSlide;
@@ -53,9 +61,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         AnimationControllers();
+
+        if (isKnocked)
+            return;
+
         FlipController();
         CollisionChecks();
         InputChecks();
+        CheckforEnemy();
 
         bufferJumpCounter -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
@@ -65,7 +78,7 @@ public class Player : MonoBehaviour
             canDoubleJump = true;
             canMove = true;
 
-            if (bufferJumpCounter >0)
+            if (bufferJumpCounter > 0)
             {
                 bufferJumpCounter = -1;
                 Jump();
@@ -83,7 +96,7 @@ public class Player : MonoBehaviour
         }
 
 
-         
+
 
         if (canWallSlide)
         {
@@ -91,16 +104,35 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
         }
 
-        
+
         Move();
 
 
-        
+
+    }
+
+    private void CheckforEnemy()
+    {
+        Collider2D[] hitedColliders = Physics2D.OverlapCircleAll(enemyCheck.position, enemyCheckRadius);
+
+        foreach (var enemy in hitedColliders)
+        {
+            if (enemy.GetComponent<Enemy>() != null)
+            {
+                if (rb.velocity.y < 0)
+                {
+                    enemy.GetComponent<Enemy>().Damage();
+                    Jump();
+                }
+            }
+        }
     }
 
     private void AnimationControllers()
     {
         bool isMoving = rb.velocity.x != 0;
+
+        anim.SetBool("isKnocked", isKnocked);
 
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isGrounded", isGrounded);
@@ -153,6 +185,39 @@ public class Player : MonoBehaviour
         canWallSlide = false;
     }
 
+    public void Knockback(Transform damageTransform)
+    {
+        if(!canBeKnocked)
+            return;
+
+        isKnocked = true;
+        canBeKnocked = false;
+
+
+        #region Define horizontal direction for knockback
+        int hDirection = 0;  //h: horizontal
+
+        if (transform.position.x > damageTransform.position.x)
+            hDirection = 1;
+        else if (transform.position.x < damageTransform.position.x)
+            hDirection = -1;
+        #endregion
+
+        rb.velocity = new Vector2(knockBackDirection.x * hDirection, knockBackDirection.y);
+
+        Invoke("CancelKnockback", knockbackTime);
+        Invoke("AllowKnockback", knockbackProtectionTime);
+    }
+
+    private void CancelKnockback()
+    {
+        isKnocked = false;
+    }
+
+    private void AllowKnockback()
+    {
+        canBeKnocked = true;
+    }
     private void Move()
     {
         if (canMove)
@@ -203,6 +268,7 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundCheckDistance));
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + wallCheckDistance * facingDirection, transform.position.y));
+        Gizmos.DrawWireSphere(enemyCheck.position, enemyCheckRadius);
     }
 
 
