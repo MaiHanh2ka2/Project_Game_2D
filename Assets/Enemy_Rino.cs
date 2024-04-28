@@ -7,7 +7,7 @@ public class Enemy_Rino : Enemy
     [SerializeField] private float speed;
     [SerializeField] private float agroSpeed;
     [SerializeField] private float idleTime = 2;
-    private float idleTimeCounter;
+                     private float idleTimeCounter;
 
     [SerializeField] private float shockTime;
     private float shockTimeCounter;

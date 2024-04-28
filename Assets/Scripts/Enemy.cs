@@ -18,12 +18,12 @@ public class Enemy : MonoBehaviour
 
     public bool invincible;
 
+
     protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
-
     public void Damage()
     {
         if (!invincible)
