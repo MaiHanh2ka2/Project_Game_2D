@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy_Rino : Enemy
 {
 
-    [Header("Rino spesific")]
+    [Header("Rino specifics")]
     [SerializeField] private float agroSpeed;
     [SerializeField] private float shockTime;
                      private float shockTimeCounter;
@@ -11,7 +11,7 @@ public class Enemy_Rino : Enemy
     [SerializeField] private LayerMask whatToIgnore;
     private RaycastHit2D playerDetection;
     private bool aggresive;
-
+   
 
     protected override void Start()
     {
