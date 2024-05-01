@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
                      protected float idleTimeCounter;
 
 
+    protected bool canMove = true;
+
+
     protected virtual void Start()
     {
         anim = GetComponent<Animator>();
@@ -35,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void WalkAround()
     {
-        if (idleTimeCounter <= 0)
+        if (idleTimeCounter <= 0 && canMove)
             rb.velocity = new Vector2(speed * facingDirection, rb.velocity.y);
         else
             rb.velocity = new Vector2(0, 0);   // Vector2.zero 
@@ -52,6 +55,7 @@ public class Enemy : MonoBehaviour
     public virtual void Damage()
     {
         if (!invincible)
+            canMove = false;
             anim.SetTrigger("gotHit");
     }
 
