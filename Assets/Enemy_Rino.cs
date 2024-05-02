@@ -8,9 +8,8 @@ public class Enemy_Rino : Enemy
     [SerializeField] private float shockTime;
                      private float shockTimeCounter;
 
-    [SerializeField] private LayerMask whatToIgnore;
+
     private RaycastHit2D playerDetection;
-    private bool aggresive;
    
 
     protected override void Start()

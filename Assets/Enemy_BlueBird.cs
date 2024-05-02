@@ -38,15 +38,22 @@ public class Enemy_BlueBird : Enemy
             flyForce = flyDownForce;
         else if (groundDetected)
             flyForce = flyUpForce;
+
         if (wallDetected)
             Flip();
 
+
     }
 
+    [SerializeField] private Transform movePoint;
+    [SerializeField] private float xMultiplier;
+    [SerializeField] private float yMultiplier;
+     
     public void FlyUpEvent()
     {
         if (canFly)
             rb.velocity = new Vector2(speed * facingDirection, flyForce);
+
     }
 
     protected override void CollisionChecks()
