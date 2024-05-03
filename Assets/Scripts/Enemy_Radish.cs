@@ -6,7 +6,7 @@ public class Enemy_Radish : Enemy
     private RaycastHit2D groundBelowDetected;
     private bool groundAboveDetected;
 
-    [Header("Radish specifics")]
+    [Header("Radish specific")]
     [SerializeField] private float ceillingDistance;
     [SerializeField] private float groundDistance;
 

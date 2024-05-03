@@ -5,7 +5,7 @@ public class Enemy_BlueBird : Enemy
 
     private bool ceillingDetected;
 
-    [Header("Blue bird specifics")]
+    [Header("Blue bird specific")]
     [SerializeField] private float ceillingDistance;
     [SerializeField] private float groundDistance;
 

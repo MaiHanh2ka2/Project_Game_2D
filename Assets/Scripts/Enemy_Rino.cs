@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy_Rino : Enemy
 {
 
-    [Header("Rino specifics")]
+    [Header("Rino specific")]
     [SerializeField] private float agroSpeed;
     [SerializeField] private float shockTime;
                      private float shockTimeCounter;

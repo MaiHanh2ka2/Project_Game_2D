@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy_Ghost : Enemy
 {
-    [Header("Ghost spesifics")]
+    [Header("Ghost specific")]
     [SerializeField] private float activeTime;
     private float activeTimeCounter = 4;
 

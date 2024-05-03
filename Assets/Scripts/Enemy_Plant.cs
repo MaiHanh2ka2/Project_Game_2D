@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Plant : Enemy
 {
-    [Header("Plant spesifics")]
+    [Header("Plant specific")]
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletOrigin;
