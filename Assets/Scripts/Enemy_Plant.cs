@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Plant : Enemy
 {
-    [Header("Plant specific")]
+    [Header("Plant specifics")]
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletOrigin;
@@ -37,5 +37,6 @@ public class Enemy_Plant : Enemy
         GameObject newBullet = Instantiate(bulletPrefab, bulletOrigin.transform.position, bulletOrigin.transform.rotation);
 
         newBullet.GetComponent<Bullet>().SetupSpeed(bulletSpeed * facingDirection, 0);
+        Destroy(newBullet, 3f);
     }
 }

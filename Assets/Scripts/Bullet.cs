@@ -15,7 +15,6 @@ public class Bullet : Danger
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rb.velocity = new Vector2(xSpeed, ySpeed);

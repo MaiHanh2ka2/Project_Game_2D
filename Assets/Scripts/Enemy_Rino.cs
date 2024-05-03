@@ -6,11 +6,11 @@ public class Enemy_Rino : Enemy
     [Header("Rino specific")]
     [SerializeField] private float agroSpeed;
     [SerializeField] private float shockTime;
-                     private float shockTimeCounter;
+    private float shockTimeCounter;
 
 
-    
-   
+
+
 
     protected override void Start()
     {
@@ -21,7 +21,8 @@ public class Enemy_Rino : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+        CollisionChecks();
+
         if (playerDetection.collider.GetComponent<Player>() != null)
             aggresive = true;
 
@@ -32,6 +33,11 @@ public class Enemy_Rino : Enemy
 
         else
         {
+            if (!groundDetected)
+            {
+                aggresive = false;
+                Flip();
+            }
             rb.velocity = new Vector2(agroSpeed * facingDirection, rb.velocity.y);
 
             if (wallDetected && invincible)
@@ -52,7 +58,6 @@ public class Enemy_Rino : Enemy
         }
 
 
-        CollisionChecks();
         AnimatorController();
     }
 
@@ -62,5 +67,5 @@ public class Enemy_Rino : Enemy
         anim.SetFloat("xVelocity", rb.velocity.x);
     }
 
-   
+
 }
