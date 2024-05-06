@@ -12,7 +12,6 @@ public class Enemy_Bee : Enemy
 
     private bool playerDetected;
     private int idlePointIndex;
-    private Transform player;
     private float defaultSpeed;
 
     [Header("Bullet specifics")]
@@ -24,7 +23,6 @@ public class Enemy_Bee : Enemy
     {
         base.Start();
         defaultSpeed = speed;
-        player = GameObject.Find("Player").transform;
     }
 
 
@@ -39,6 +37,8 @@ public class Enemy_Bee : Enemy
         if (idle)
             return;
 
+        if (player == null)
+            return;
 
         playerDetected = Physics2D.OverlapCircle(playerCheck.position, whatIsPlayer);
 

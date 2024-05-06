@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Color gizmosColor;
     private void Start()
     {
-        myCamera.GetComponent<CinemachineVirtualCamera>().Follow = GameObject.Find("Player").transform;
+        myCamera.GetComponent<CinemachineVirtualCamera>().Follow = PlayerManager.instance.currentPlayer.transform;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

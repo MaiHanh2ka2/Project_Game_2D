@@ -16,7 +16,7 @@ public class Enemy : Danger
     protected RaycastHit2D playerDetection;
 
 
-
+    protected Transform player;
     protected bool wallDetected;
     protected bool groundDetected;
 
@@ -35,6 +35,8 @@ public class Enemy : Danger
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        player = PlayerManager.instance.currentPlayer.transform;
 
         if (groundCheck == null)
             groundCheck = transform;
@@ -70,7 +72,7 @@ public class Enemy : Danger
         Destroy(gameObject);
     }
 
-    
+
 
     protected virtual void Flip()
     {

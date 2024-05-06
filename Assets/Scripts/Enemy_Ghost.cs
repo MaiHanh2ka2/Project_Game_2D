@@ -6,7 +6,7 @@ public class Enemy_Ghost : Enemy
     [SerializeField] private float activeTime;
     private float activeTimeCounter = 4;
 
-    private Transform player;
+
     private SpriteRenderer sr;
 
     [SerializeField] private float[] xOffset;
@@ -15,13 +15,20 @@ public class Enemy_Ghost : Enemy
     {
         base.Start();
         sr = GetComponent<SpriteRenderer>();
-        player = GameObject.Find("Player").transform;
+        aggresive = true;
+        invincible = true;
     }
 
 
 
     private void Update()
     {
+        if (player == null)
+        {
+            anim.SetTrigger("desappear");
+            return;
+        }
+
         activeTimeCounter -= Time.deltaTime;
         idleTimeCounter -= Time.deltaTime;
 
@@ -43,6 +50,13 @@ public class Enemy_Ghost : Enemy
             activeTimeCounter = activeTime;
         }
 
+        FlipController();
+    }
+
+    private void FlipController()
+    {
+        if (player == null)
+            return;
 
         if (facingDirection == -1 && transform.position.x < player.transform.position.x)
             Flip();
