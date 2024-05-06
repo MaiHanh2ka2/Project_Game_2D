@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    [SerializeField] private Transform respawnPoint;
-    [SerializeField] private GameObject playerPrefab;
+    public Transform respawnPoint;
     public GameObject currentPlayer;
+
+    [SerializeField] private GameObject playerPrefab;
 
     private void Awake()
     {
@@ -16,7 +15,13 @@ public class PlayerManager : MonoBehaviour
         PlayerRespawn();
     }
 
-    private void PlayerRespawn()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            PlayerRespawn();
+    }
+
+    public void PlayerRespawn()
     {
         if (currentPlayer == null)
             currentPlayer = Instantiate(playerPrefab, respawnPoint.position, transform.rotation);

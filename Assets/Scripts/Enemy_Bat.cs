@@ -47,7 +47,7 @@ public class Enemy_Bat : Enemy
                 destination = player.transform.position;
             else
             {
-                aggresive = true;
+                aggresive = false;
                 canBeAggresive = true;
             }
 
