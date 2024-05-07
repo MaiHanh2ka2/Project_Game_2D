@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 15
-  doubleJumpForce: 10
+  jumpForce: 20
+  doubleJumpForce: 15
   wallJumpDirection: {x: 5, y: 15}
   bufferJumpTime: 0.1
   cayoteJumpTime: 0.15
@@ -175,6 +175,9 @@ MonoBehaviour:
   knockbackTime: 0.5
   knockbackProtectionTime: 0.7
   whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1088
+  whatIsWall:
     serializedVersion: 2
     m_Bits: 64
   groundCheckDistance: 1.22
