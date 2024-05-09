@@ -22,6 +22,13 @@ public class Enemy_Rino : Enemy
     void Update()
     {
         CollisionChecks();
+        AnimatorController();
+
+        if (!playerDetection)
+        {
+            WalkAround();
+            return;
+        }
 
         if (playerDetection.collider.GetComponent<Player>() != null)
             aggresive = true;
@@ -58,7 +65,6 @@ public class Enemy_Rino : Enemy
         }
 
 
-        AnimatorController();
     }
 
     private void AnimatorController()
