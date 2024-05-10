@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class MainMenu_UI : MonoBehaviour
 {
-    public void SwitchMenuTo(GameObject wiMenu)
+    public void SwitchMenuTo(GameObject uiMenu)
     {
         for (int i = 0; i <transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        wiMenu.SetActive(true);
+        uiMenu.SetActive(true);
     }
+
+    public void SetGameDifficulty(int i) => GameManager.instance.difficulty = i;
 }

@@ -13,8 +13,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        PlayerRespawn();
+        DontDestroyOnLoad(this.gameObject);
+
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
     }
 
     private void Update()
