@@ -8,7 +8,7 @@ public class Enemy_Trunk : Enemy
 
     [Header("Collision specifics")]
     [SerializeField] private float checkRadius;
-    [SerializeField] private LayerMask whatIsPlayer;
+    //[SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private Transform groundBehindCheck;
     private bool wallBehind;
     private bool groundbehind;

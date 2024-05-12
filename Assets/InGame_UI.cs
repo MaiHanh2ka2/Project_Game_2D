@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGame_UI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TextMeshProUGUI currentFruitAmount;
 
     private bool gamePaused;
 
@@ -17,6 +16,13 @@ public class InGame_UI : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject endLevelUI;
 
+    [Header("TextComponents")]
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI currentFruitAmount;
+
+    [SerializeField] private TextMeshProUGUI endTimerText;
+    [SerializeField] private TextMeshProUGUI endBestTimeText;
+    [SerializeField] private TextMeshProUGUI endFruitsText;
     [SerializeField] Button retryBtn, mainMenuBtn;
 
     private void Start()
@@ -54,6 +60,15 @@ public class InGame_UI : MonoBehaviour
             return false;
         }
     }
+
+    public void OnLevelFinished()
+    {
+        endFruitsText.text = "fruits: " + PlayerManager.instance.fruits;
+        endTimerText.text = "Your time: " + GameManager.instance.timer.ToString("00") + " s";
+        endBestTimeText.text = "Best time: " + PlayerPrefs.GetFloat("Level" + GameManager.instance.levelNumber + "BestTime", 999).ToString("00") + " s";
+
+        SwitchUI(endLevelUI);
+    }
     private void UpdateInGameInfo()
     {
         timerText.text = "Timer: " + GameManager.instance.timer.ToString("00") + " s";
@@ -80,4 +95,9 @@ public class InGame_UI : MonoBehaviour
         Debug.Log("Load Current");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     } 
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

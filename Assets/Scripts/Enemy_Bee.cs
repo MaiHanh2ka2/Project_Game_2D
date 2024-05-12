@@ -5,7 +5,7 @@ public class Enemy_Bee : Enemy
     [Header("Bee specifics")]
     [SerializeField] private Transform[] idlePoint;
     [SerializeField] private float checkRadius;
-    [SerializeField] private LayerMask whatIsPlayer;
+    //[SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float yOffset;
     [SerializeField] private float aggroSpeed;
@@ -40,7 +40,7 @@ public class Enemy_Bee : Enemy
         if (player == null)
             return;
 
-        playerDetected = Physics2D.OverlapCircle(playerCheck.position, whatIsPlayer);
+        playerDetected =Physics2D.OverlapCircle(playerCheck.position, checkRadius, whatIsPlayer);// viet thieu pham vi cua no nen no check tren toan man hinh
 
         if (playerDetected && !aggresive)
         {
@@ -52,10 +52,10 @@ public class Enemy_Bee : Enemy
         {
             transform.position = Vector2.MoveTowards(transform.position, idlePoint[idlePointIndex].position, speed * Time.deltaTime);
 
-            if(Vector2.Distance(transform.position, idlePoint[idlePointIndex].position) < .1f)
+            if (Vector2.Distance(transform.position, idlePoint[idlePointIndex].position) < .1f)
             {
                 idlePointIndex++;
-                if(idlePointIndex >= idlePoint.Length)
+                if (idlePointIndex >= idlePoint.Length)
                     idlePointIndex = 0;
             }
         }

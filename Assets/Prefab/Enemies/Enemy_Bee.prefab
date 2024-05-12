@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 600792010904686367}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.8, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -173,13 +173,18 @@ MonoBehaviour:
   whatToIgnore:
     serializedVersion: 2
     m_Bits: 1797
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheckDistance: 0
   wallCheckDistance: 0
+  playerDistance: 100
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   invincible: 0
   speed: 4
   idleTime: 2
+  idleTimeCounter: 0
   idlePoint:
   - {fileID: 4342800095801085379}
   - {fileID: 1774480113674686721}
@@ -187,9 +192,6 @@ MonoBehaviour:
   - {fileID: 8770437332461719535}
   - {fileID: 5757107263876951913}
   checkRadius: 4
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
   playerCheck: {fileID: 4318021220560070767}
   yOffset: 5
   aggroSpeed: 8

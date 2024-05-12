@@ -202,13 +202,18 @@ MonoBehaviour:
   whatToIgnore:
     serializedVersion: 2
     m_Bits: 257
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheckDistance: 0.5
   wallCheckDistance: 1.1
+  playerDistance: 100
   groundCheck: {fileID: 5593002259858572463}
   wallCheck: {fileID: 7561450986866030198}
   invincible: 0
   speed: 5
   idleTime: 2
+  idleTimeCounter: 0
   ceillingDistance: 3.42
   groundDistance: 5
   aggroTime: 8

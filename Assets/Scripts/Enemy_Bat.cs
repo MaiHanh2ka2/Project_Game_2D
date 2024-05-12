@@ -5,7 +5,7 @@ public class Enemy_Bat : Enemy
     [Header("Bat specifics")]
     [SerializeField] private Transform[] idlePoint;
     [SerializeField] private float checkRadius;
-    [SerializeField] private LayerMask whatIsPlayer;
+    //[SerializeField] private LayerMask whatIsPlayer;
 
     private bool playerDetected;
 
@@ -36,7 +36,7 @@ public class Enemy_Bat : Enemy
         if (idleTimeCounter > 0)
             return;
 
-        playerDetected = Physics2D.OverlapCircle(transform.position, whatIsPlayer);
+        playerDetected = Physics2D.OverlapCircle(transform.position,checkRadius, whatIsPlayer);
 
         if (playerDetected && !aggresive && canBeAggresive)
         {

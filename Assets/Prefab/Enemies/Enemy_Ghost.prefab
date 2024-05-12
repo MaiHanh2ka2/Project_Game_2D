@@ -140,13 +140,18 @@ MonoBehaviour:
   whatToIgnore:
     serializedVersion: 2
     m_Bits: 1028
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheckDistance: 0
   wallCheckDistance: 0
+  playerDistance: 100
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   invincible: 0
   speed: 3
   idleTime: 4
+  idleTimeCounter: 0
   activeTime: 4
   xOffset:
   - -7
