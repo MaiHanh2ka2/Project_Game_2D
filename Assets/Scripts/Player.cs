@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool canMove;
 
     private float movingInput;
+    private bool canBeControlled;
 
     [SerializeField] private float bufferJumpTime;
     private float bufferJumpCounter;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float cayoteJumpTime;
     private float cayoteJumpCounter;
     private bool canHaveCayoteJump;
+
+    private float defaultGravityScale;
     [Header("Knockback info")]
     [SerializeField] private Vector2 knockBackDirection;
     [SerializeField] private float knockbackTime;
@@ -55,6 +58,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
 
         defaultJumpForce = jumpForce;
+        defaultGravityScale = rb.gravityScale;
+        rb.gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -68,7 +73,7 @@ public class Player : MonoBehaviour
         FlipController();
         CollisionChecks();
         InputChecks();
-        CheckforEnemy();
+        CheckForEnemy();
 
         bufferJumpCounter -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
@@ -111,7 +116,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void CheckforEnemy()
+    private void CheckForEnemy()
     {
         Collider2D[] hitedColliders = Physics2D.OverlapCircleAll(enemyCheck.position, enemyCheckRadius);
 
@@ -139,16 +144,19 @@ public class Player : MonoBehaviour
         bool isMoving = rb.velocity.x != 0;
 
         anim.SetBool("isKnocked", isKnocked);
-
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isWallSliding", isWallSliding);
         anim.SetBool("isWallDetected", isWallDetected);
+        anim.SetBool("canBeControlled", canBeControlled);
         anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     private void InputChecks()
     {
+        if(!canBeControlled) 
+            return;
+
         movingInput = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetAxis("Vertical") < 0)
@@ -161,6 +169,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ReturnControl()
+    {
+        rb.gravityScale = defaultGravityScale;
+        canBeControlled = true;
+    }
     private void JumpButton()
     {
 
@@ -197,15 +210,9 @@ public class Player : MonoBehaviour
             return;
 
         if (GameManager.instance.difficulty > 1)
-        {
-            PlayerManager.instance.fruits--;
-            if (PlayerManager.instance.fruits < 0) // mang nho hon 0, nhan vat bi giet
-            {
-                Destroy(gameObject);
-            }
-        }
+            PlayerManager.instance.OnTakingDamage();
 
-        GetComponent<CameraShakeFX>().ScreenShake(-facingDirection);
+        PlayerManager.instance.ScreenShake(-facingDirection);
         isKnocked = true;
         canBeKnocked = false;
 

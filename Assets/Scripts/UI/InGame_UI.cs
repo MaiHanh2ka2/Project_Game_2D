@@ -27,11 +27,12 @@ public class InGame_UI : MonoBehaviour
 
     private void Start()
     {
-        retryBtn.onClick.AddListener(ReLoadCurrentLevel);
-        mainMenuBtn.onClick.AddListener(LoadMainMenu);
+        //retryBtn.onClick.AddListener(ReLoadCurrentLevel);
+        //mainMenuBtn.onClick.AddListener(LoadMainMenu);
         GameManager.instance.startTime = true;
         GameManager.instance.timer = 0;
         GameManager.instance.levelNumber = SceneManager.GetActiveScene().buildIndex;
+        PlayerManager.instance.inGameUI = this;
         Time.timeScale = 1;
         SwitchUI(inGameUI);
     }
@@ -60,7 +61,10 @@ public class InGame_UI : MonoBehaviour
             return false;
         }
     }
-
+    public void OnDeath()
+    {
+        SwitchUI(pauseUI);
+    }
     public void OnLevelFinished()
     {
         endFruitsText.text = "Fruits: " + PlayerManager.instance.fruits;

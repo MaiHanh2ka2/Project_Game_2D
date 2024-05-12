@@ -21,7 +21,6 @@ public class FruitManager : MonoBehaviour
             {
                 fruitIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(FruitType)).Length);
                 newFruit.GetComponent<Fruit_Item>().FruitSetup(fruitIndex);
-
             }
             else
             {

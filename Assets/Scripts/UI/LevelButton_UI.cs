@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LevelButton : MonoBehaviour
+public class LevelButton_UI : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI levelName;
