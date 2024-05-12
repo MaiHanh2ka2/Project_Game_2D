@@ -20,10 +20,16 @@ public class Enemy_Plant : Enemy
     private void Update()
     {
         CollisionChecks();
+        bool playerDetected = false;
         idleTimeCounter -= Time.deltaTime;
+        if (playerDetection)
+        {
+            if (playerDetection.collider.GetComponent<Player>() != null)
+            {
+                playerDetected = true;
+            }
+        }
 
-        bool playerDetected = playerDetection.collider.GetComponent<Player>() != null;
-        
         if (idleTimeCounter < 0 && playerDetected)
         {
             idleTimeCounter = idleTime;
@@ -38,5 +44,10 @@ public class Enemy_Plant : Enemy
 
         newBullet.GetComponent<Bullet>().SetupSpeed(bulletSpeed * facingDirection, 0);
         Destroy(newBullet, 3f);
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
     }
 }

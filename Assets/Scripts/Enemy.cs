@@ -9,8 +9,10 @@ public class Enemy : Danger
 
     [SerializeField] protected LayerMask whatIsGround;
     [SerializeField] protected LayerMask whatToIgnore;
+    [SerializeField] protected LayerMask whatIsPlayer;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected float wallCheckDistance;
+    [SerializeField] protected float playerDistance = 100f;
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected Transform wallCheck;
     protected RaycastHit2D playerDetection;
@@ -25,7 +27,7 @@ public class Enemy : Danger
     [Header("Move info")]
     [SerializeField] protected float speed;
     [SerializeField] protected float idleTime = 2;
-    protected float idleTimeCounter;
+    [SerializeField]protected float idleTimeCounter;
 
 
     protected bool canMove = true;
@@ -85,7 +87,7 @@ public class Enemy : Danger
     {
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
-        playerDetection = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 100, ~whatToIgnore);
+        playerDetection = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, playerDistance, whatIsPlayer);
     }
 
     protected virtual void OnDrawGizmos()
@@ -93,15 +95,9 @@ public class Enemy : Danger
         if (groundCheck != null)
             Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
 
-
         if (wallCheck != null)
         {
             Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance * facingDirection, wallCheck.position.y));
-            Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + playerDetection.distance * facingDirection, wallCheck.position.y));
         }
-
-
-
     }
-
 }

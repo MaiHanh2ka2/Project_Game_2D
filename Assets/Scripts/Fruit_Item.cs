@@ -26,7 +26,7 @@ public class Fruit_Item : MonoBehaviour
     {
         if(collision.GetComponent<Player>() != null)
         {
-            collision.GetComponent<Player>().fruits++;
+            PlayerManager.instance.fruits++;
             Destroy(gameObject);
         }
     }

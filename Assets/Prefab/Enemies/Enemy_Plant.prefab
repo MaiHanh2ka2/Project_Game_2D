@@ -158,13 +158,18 @@ MonoBehaviour:
   whatToIgnore:
     serializedVersion: 2
     m_Bits: 1797
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheckDistance: 0
   wallCheckDistance: 0
+  playerDistance: 100
   groundCheck: {fileID: 3894376408619168179}
   wallCheck: {fileID: 3894376408619168179}
   invincible: 0
   speed: 4
   idleTime: 2
+  idleTimeCounter: 0
   bulletPrefab: {fileID: 6424203026639740016, guid: 950efb6cba7dbfa48ad7f9887fa090a7, type: 3}
   bulletOrigin: {fileID: 7842227465428339973}
   bulletSpeed: 3

@@ -9,6 +9,12 @@ public class EndPoint : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             GetComponent<Animator>().SetTrigger("activate");
+
+            Destroy(collision.gameObject);
+
+            GameManager.instance.SaveBestTime();
+            GameManager.instance.SaveCollectionFruits();
+            GameManager.instance.SaveLevelInfo();
            
         }
     }

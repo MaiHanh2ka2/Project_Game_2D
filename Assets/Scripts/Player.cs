@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,7 +5,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    public int fruits;
 
     [Header("Move info")]
     public float moveSpeed;
@@ -23,17 +20,17 @@ public class Player : MonoBehaviour
     private float movingInput;
 
     [SerializeField] private float bufferJumpTime;
-                     private float bufferJumpCounter;
+    private float bufferJumpCounter;
 
     [SerializeField] private float cayoteJumpTime;
-                     private float cayoteJumpCounter;
-                     private bool canHaveCayoteJump;
+    private float cayoteJumpCounter;
+    private bool canHaveCayoteJump;
     [Header("Knockback info")]
     [SerializeField] private Vector2 knockBackDirection;
     [SerializeField] private float knockbackTime;
     [SerializeField] private float knockbackProtectionTime;
-                     private bool isKnocked;
-                     private bool canBeKnocked = true;
+    private bool isKnocked;
+    private bool canBeKnocked = true;
 
     [Header("Collision info")]
     [SerializeField] private LayerMask whatIsGround;
@@ -128,7 +125,7 @@ public class Player : MonoBehaviour
                 if (newEnemy.invincible)
                     return;
 
-                if(rb.velocity.y < 0)
+                if (rb.velocity.y < 0)
                 {
                     newEnemy.Damage();
                     Jump();
@@ -196,13 +193,16 @@ public class Player : MonoBehaviour
 
     public void Knockback(Transform damageTransform)
     {
-        if(!canBeKnocked)
+        if (!canBeKnocked)
             return;
 
-        fruits--;
-        if (fruits < 0) // mang nho hon 0, nhan vat bi giet
+        if (GameManager.instance.difficulty > 1)
         {
-            Destroy(gameObject);
+            PlayerManager.instance.fruits--;
+            if (PlayerManager.instance.fruits < 0) // mang nho hon 0, nhan vat bi giet
+            {
+                Destroy(gameObject);
+            }
         }
 
         GetComponent<CameraShakeFX>().ScreenShake(-facingDirection);
@@ -237,17 +237,17 @@ public class Player : MonoBehaviour
     private void Move()
     {
         if (canMove)
-        rb.velocity = new Vector2(moveSpeed * movingInput, rb.velocity.y);
+            rb.velocity = new Vector2(moveSpeed * movingInput, rb.velocity.y);
     }
 
-    public void Push( float pushForce)
+    public void Push(float pushForce)
     {
-        rb.velocity = new Vector2 (rb.velocity.x, pushForce);
+        rb.velocity = new Vector2(rb.velocity.x, pushForce);
     }
 
     private void WallJump()
     {
-        canMove = false; 
+        canMove = false;
         rb.velocity = new Vector2(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);
     }
     private void Jump()
@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
             Flip();
     }
 
-    public  void Flip()
+    public void Flip()
     {
         facingDirection = facingDirection * -1;
         facingRight = !facingRight;
@@ -293,5 +293,5 @@ public class Player : MonoBehaviour
     }
 
 
-    
+
 }
