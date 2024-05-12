@@ -63,7 +63,7 @@ public class InGame_UI : MonoBehaviour
 
     public void OnLevelFinished()
     {
-        endFruitsText.text = "fruits: " + PlayerManager.instance.fruits;
+        endFruitsText.text = "Fruits: " + PlayerManager.instance.fruits;
         endTimerText.text = "Your time: " + GameManager.instance.timer.ToString("00") + " s";
         endBestTimeText.text = "Best time: " + PlayerPrefs.GetFloat("Level" + GameManager.instance.levelNumber + "BestTime", 999).ToString("00") + " s";
 
@@ -87,7 +87,7 @@ public class InGame_UI : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        Debug.Log("Load Main");
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
     }
     public void ReLoadCurrentLevel()

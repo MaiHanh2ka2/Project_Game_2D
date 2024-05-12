@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
             GameObject newButton = Instantiate(levelButton, levelButtonParent);
             newButton.GetComponent<Button>().onClick.AddListener(() => LoadLevel(sceneName));
-            newButton.GetComponentInChildren<TextMeshProUGUI>().text = sceneName;
+            newButton.GetComponent<LevelButton>().UpdateTextInfo(i);
         }
     }
 

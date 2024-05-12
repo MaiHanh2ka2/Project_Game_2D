@@ -7,9 +7,12 @@ using UnityEngine.UI;
 public class MainMenu_UI : MonoBehaviour
 {
 
-    public void Start()
+    [SerializeField] private GameObject continueButton;
+
+    private void Start()
     {
-        Time.timeScale = 1.0f;
+        bool showButton = PlayerPrefs.GetInt("Level" + 2 + "Unlocked") == 1;
+        continueButton.SetActive(showButton);
     }
     public void SwitchMenuTo(GameObject uiMenu)
     {

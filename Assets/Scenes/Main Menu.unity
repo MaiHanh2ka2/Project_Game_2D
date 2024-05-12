@@ -1866,7 +1866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &468407366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6782,7 +6782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1371056064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7429,7 +7429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelButton: {fileID: 8132647699113473555, guid: dd89b2233e0cefe4b9e34e83b2998583, type: 3}
   levelButtonParent: {fileID: 1711585046}
-  levelOpen: 00000000000000000000000000000000000000000000000000
+  levelOpen: 01010101010000000000000000000000000000000000000000
 --- !u!4 &1591007074
 Transform:
   m_ObjectHideFlags: 0
