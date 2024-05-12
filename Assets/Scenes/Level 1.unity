@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15055924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3838928809865930427, guid: 03b0a1adb6376bb4c97a50317b48d8b3, type: 3}
+  m_PrefabInstance: {fileID: 2850204180336567432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &91281059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3696742598936584326, guid: c3a586a3db1b1e54488424a57bcc7ab0, type: 3}
@@ -1045,8 +1050,8 @@ MonoBehaviour:
   respawnPoint: {fileID: 1321575550}
   currentPlayer: {fileID: 0}
   chosenSkinId: 0
-  inGameUI: {fileID: 0}
-  fruitPrefab: {fileID: 0}
+  inGameUI: {fileID: 1089021179}
+  fruitPrefab: {fileID: 15055924}
   playerPrefab: {fileID: 1940365371292788766, guid: d6bfa9f36556e734e8e52cd0b21c97a9, type: 3}
   deathfx: {fileID: 472543437}
   impusle: {fileID: 524351471}
@@ -16935,11 +16940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5528094065942037088, guid: dec4ab134c05a1e438e5e2a745ee3e43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.87
       objectReference: {fileID: 0}
     - target: {fileID: 5528094065942037088, guid: dec4ab134c05a1e438e5e2a745ee3e43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.59
       objectReference: {fileID: 0}
     - target: {fileID: 5528094065942037088, guid: dec4ab134c05a1e438e5e2a745ee3e43, type: 3}
       propertyPath: m_LocalPosition.z
