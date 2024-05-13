@@ -5,6 +5,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem dustFX;
+    private float dustFxTimer;
 
     [Header("Move info")]
     public float moveSpeed;
@@ -19,6 +22,8 @@ public class Player : MonoBehaviour
 
     private float movingInput;
     private bool canBeControlled;
+
+    private bool readyToLand;
 
     [SerializeField] private float bufferJumpTime;
     private float bufferJumpCounter;
@@ -57,6 +62,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+        SetAnimationLayer();
+
         defaultJumpForce = jumpForce;
         defaultGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
@@ -90,9 +97,18 @@ public class Player : MonoBehaviour
             }
 
             canHaveCayoteJump = true;
+
+            if (readyToLand)
+            {
+                dustFX.Play();
+                readyToLand = false;
+            }
         }
         else
         {
+            if(!readyToLand)
+                readyToLand = true;
+
             if (canHaveCayoteJump)
             {
                 canHaveCayoteJump = false;
@@ -133,12 +149,29 @@ public class Player : MonoBehaviour
                 if (rb.velocity.y < 0)
                 {
                     newEnemy.Damage();
+                    anim.SetBool("flipping", true);
                     Jump();
                 }
             }
         }
     }
 
+    private void StopFlippingAnimation()
+    {
+        anim.SetBool("flipping", false);
+    }
+
+    private void SetAnimationLayer()
+    {
+        int skinIndex = PlayerManager.instance.chosenSkinId;
+
+        for (int i = 0; i < anim.layerCount; i++)
+        {
+            anim.SetLayerWeight(i, 0);
+        }
+
+        anim.SetLayerWeight(skinIndex, 1);
+    }
     private void AnimationControllers()
     {
         bool isMoving = rb.velocity.x != 0;
@@ -256,14 +289,21 @@ public class Player : MonoBehaviour
     {
         canMove = false;
         rb.velocity = new Vector2(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);
+
+        dustFX.Play();
     }
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+        if(isGrounded)
+            dustFX.Play();
     }
 
     private void FlipController()
     {
+        dustFxTimer -= Time.deltaTime;
+
         if (facingRight && rb.velocity.x < 0)
             Flip();
         else if (!facingRight && rb.velocity.x > 0)
@@ -272,6 +312,13 @@ public class Player : MonoBehaviour
 
     public void Flip()
     {
+        if(dustFxTimer < 0)
+        {
+            dustFX.Play();
+            dustFxTimer = .7f;
+        }
+        
+
         facingDirection = facingDirection * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
