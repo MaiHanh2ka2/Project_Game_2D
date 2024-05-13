@@ -148,6 +148,8 @@ public class Player : MonoBehaviour
 
                 if (rb.velocity.y < 0)
                 {
+                    AudioManager.instance.PlaySFX(1);
+
                     newEnemy.Damage();
                     anim.SetBool("flipping", true);
                     Jump();
@@ -239,6 +241,8 @@ public class Player : MonoBehaviour
 
     public void Knockback(Transform damageTransform)
     {
+        AudioManager.instance.PlaySFX(9);
+
         if (!canBeKnocked)
             return;
 
@@ -287,6 +291,8 @@ public class Player : MonoBehaviour
 
     private void WallJump()
     {
+        AudioManager.instance.PlaySFX(12);
+
         canMove = false;
         rb.velocity = new Vector2(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);
 
@@ -294,6 +300,8 @@ public class Player : MonoBehaviour
     }
     private void Jump()
     {
+        AudioManager.instance.PlaySFX(3);
+
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         if(isGrounded)

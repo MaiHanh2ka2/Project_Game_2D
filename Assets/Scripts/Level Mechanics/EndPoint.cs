@@ -16,6 +16,9 @@ public class EndPoint : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("activate");
 
+            AudioManager.instance.PlaySFX(2);
+            PlayerManager.instance.KillPlayer();
+
             inGame_UI.OnLevelFinished();
 
             Destroy(collision.gameObject);

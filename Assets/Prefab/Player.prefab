@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5198042804541714410
 Transform:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 20
   doubleJumpForce: 15
-  wallJumpDirection: {x: 5, y: 15}
+  wallJumpDirection: {x: 5, y: 2.5}
   bufferJumpTime: 0.1
   cayoteJumpTime: 0.15
   knockBackDirection: {x: 5, y: 10}

@@ -58,8 +58,10 @@ public class SkinSelection_UI : MonoBehaviour
 
             PlayerPrefs.SetInt("TotalFruitsCollected", totalFruits);
 
+            AudioManager.instance.PlaySFX(5);
             return true;
         }
+        AudioManager.instance.PlaySFX(6);
         return false;
     }
 
@@ -73,6 +75,8 @@ public class SkinSelection_UI : MonoBehaviour
     }
     public void NextSkin()
     {
+        AudioManager.instance.PlaySFX(4);
+
         skin_Id++;
 
         if (skin_Id > 3)
@@ -82,6 +86,8 @@ public class SkinSelection_UI : MonoBehaviour
     }
     public void PreviousSkin()
     {
+        AudioManager.instance.PlaySFX(4);
+
         skin_Id--;
 
         if (skin_Id < 0)
