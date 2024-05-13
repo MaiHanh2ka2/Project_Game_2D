@@ -456,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1940365371292788766, guid: d6bfa9f36556e734e8e52cd0b21c97a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5198042804541714410, guid: d6bfa9f36556e734e8e52cd0b21c97a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   fruitPrefab: {fileID: 0}
   playerPrefab: {fileID: 1940365371292788766, guid: d6bfa9f36556e734e8e52cd0b21c97a9, type: 3}
   deathfx: {fileID: 0}
-  impusle: {fileID: 524351471}
+  impulse: {fileID: 0}
   shakeDirection: {x: 1, y: 1, z: 0}
   forceMultiplier: 1
 --- !u!4 &524351470
@@ -16901,6 +16901,22 @@ PrefabInstance:
     - target: {fileID: 990188933940764452, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097460191501952380, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8498755
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097460191501952380, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
+      propertyPath: m_Size.y
+      value: 2.0986495
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097460191501952380, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02665472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097460191501952380, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.95067525
       objectReference: {fileID: 0}
     - target: {fileID: 8966036632297191839, guid: f041818ce9ac3b14dbb52b7338bfe414, type: 3}
       propertyPath: m_Name

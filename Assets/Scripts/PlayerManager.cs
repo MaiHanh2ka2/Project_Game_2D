@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public Transform respawnPoint;
     [HideInInspector] public GameObject currentPlayer;
     [HideInInspector] public int chosenSkinId;
-    
+
     public InGame_UI inGameUI;
 
     [Header("Player info")]
@@ -19,13 +19,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject deathfx;
 
     [Header("Camera Shake FX")]
-    [SerializeField] private CinemachineImpulseSource impusle;
+    [SerializeField] private CinemachineImpulseSource impulse;
     [SerializeField] private Vector3 shakeDirection;
     [SerializeField] private float forceMultiplier;
     public void ScreenShake(int facingDir)
     {
-        impusle.m_DefaultVelocity = new Vector3(shakeDirection.x * facingDir, shakeDirection.y) * forceMultiplier;
-        impusle.GenerateImpulse();
+        impulse.m_DefaultVelocity = new Vector3(shakeDirection.x * facingDir, shakeDirection.y) * forceMultiplier;
+        impulse.GenerateImpulse();
     }
 
     private void Awake()
@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
 
     private bool HaveEnoughFruits()
     {
-        if(fruits > 0)
+        if (fruits > 0)
         {
             fruits--;
 
@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour
             DropFruit();
             return true;
         }
-        return false;   
+        return false;
     }
 
     private void DropFruit()
@@ -91,12 +91,12 @@ public class PlayerManager : MonoBehaviour
         {
             Invoke("RespawnPlayer", 1);
 
-            if(difficulty > 1)
+            if (difficulty > 1)
                 HaveEnoughFruits();
         }
         else
             inGameUI.OnDeath();
-  
+
     }
     public void RespawnPlayer()
     {
@@ -110,9 +110,11 @@ public class PlayerManager : MonoBehaviour
     public void KillPlayer()
     {
         AudioManager.instance.PlaySFX(0);
-
-        GameObject newDeathfx = Instantiate(deathfx, currentPlayer.transform.position, currentPlayer.transform.rotation);
-        Destroy(newDeathfx, -4f);
+        if (deathfx != null)
+        {
+            GameObject newDeathfx = Instantiate(deathfx, currentPlayer.transform.position, currentPlayer.transform.rotation);
+            Destroy(newDeathfx, -4f);
+        }
         Destroy(currentPlayer);
     }
 }

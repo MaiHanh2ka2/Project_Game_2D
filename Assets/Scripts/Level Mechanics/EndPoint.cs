@@ -15,7 +15,7 @@ public class EndPoint : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             GetComponent<Animator>().SetTrigger("activate");
-
+            Debug.Log("vao day");
             AudioManager.instance.PlaySFX(2);
             PlayerManager.instance.KillPlayer();
 
