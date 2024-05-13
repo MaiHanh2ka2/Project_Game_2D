@@ -10,8 +10,17 @@ public class Danger : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             Player player = collision.GetComponent<Player>();
-
+            var playerManager =  PlayerManager.instance;
             player.Knockback(transform);
+            //if (playerManager.fruits >= 0)
+            //{
+            //    playerManager.fruits--;
+            //    if (playerManager.fruits <= 0)
+            //    {
+            //        playerManager.fruits = 0;
+            //        playerManager.KillPlayer();
+            //    }
+            //}
         }
     }
 }

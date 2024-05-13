@@ -65,6 +65,7 @@ public class Enemy : Danger
     }
     public virtual void Damage()
     {
+        //Deal damage from player to enemy
         if (!invincible)
             canMove = false;
         anim.SetTrigger("gotHit");

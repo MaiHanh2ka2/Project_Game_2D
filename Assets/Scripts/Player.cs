@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        GetComponent<Collider2D>().enabled = true;
         SetAnimationLayer();
 
         defaultJumpForce = jumpForce;
@@ -149,7 +149,6 @@ public class Player : MonoBehaviour
                 if (rb.velocity.y < 0)
                 {
                     AudioManager.instance.PlaySFX(1);
-
                     newEnemy.Damage();
                     anim.SetBool("flipping", true);
                     Jump();

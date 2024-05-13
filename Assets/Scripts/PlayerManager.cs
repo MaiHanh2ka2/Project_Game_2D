@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -94,8 +95,11 @@ public class PlayerManager : MonoBehaviour
             if (difficulty > 1)
                 HaveEnoughFruits();
         }
-        else
-            inGameUI.OnDeath();
+        //else
+        //{
+        //    inGameUI.OnDeath();
+        //    Debug.Log("OnDead");
+        //}
 
     }
     public void RespawnPlayer()
@@ -104,17 +108,28 @@ public class PlayerManager : MonoBehaviour
         {
             AudioManager.instance.PlaySFX(11);
             currentPlayer = Instantiate(playerPrefab, respawnPoint.position, transform.rotation);
+            currentPlayer.GetComponent<Player>().enabled = true;
         }
     }
 
     public void KillPlayer()
     {
         AudioManager.instance.PlaySFX(0);
+
         if (deathfx != null)
         {
             GameObject newDeathfx = Instantiate(deathfx, currentPlayer.transform.position, currentPlayer.transform.rotation);
-            Destroy(newDeathfx, -4f);
-        }
+            Destroy(newDeathfx, 0.5f);
+       }
+        StartCoroutine(OnDestroyPlayer());
+    }
+
+    public IEnumerator OnDestroyPlayer()
+    {
+        currentPlayer.GetComponent<Collider2D>().enabled = false;
+        currentPlayer.GetComponent<Player>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        inGameUI.OnDeath();
         Destroy(currentPlayer);
     }
 }
