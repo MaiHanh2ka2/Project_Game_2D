@@ -8,10 +8,6 @@ public class Enemy_Rino : Enemy
     [SerializeField] private float shockTime;
     private float shockTimeCounter;
 
-
-
-
-
     protected override void Start()
     {
         base.Start();
