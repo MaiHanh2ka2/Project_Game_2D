@@ -27,7 +27,7 @@ public class Fruit_Item : MonoBehaviour
         if(collision.GetComponent<Player>() != null)
         {
             PlayerManager.instance.fruits++;
-            AudioManager.instance.PlaySFX(7);
+            AudioManager.instance.PlaySFX(1);
             Destroy(gameObject);
         }
     }

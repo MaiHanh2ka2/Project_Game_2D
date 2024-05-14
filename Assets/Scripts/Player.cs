@@ -240,7 +240,7 @@ public class Player : MonoBehaviour
 
     public void Knockback(Transform damageTransform)
     {
-        AudioManager.instance.PlaySFX(9);
+        AudioManager.instance.PlaySFX(1);
 
         if (!canBeKnocked)
             return;
@@ -290,7 +290,7 @@ public class Player : MonoBehaviour
 
     private void WallJump()
     {
-        AudioManager.instance.PlaySFX(12);
+        AudioManager.instance.PlaySFX(1);
 
         canMove = false;
         rb.velocity = new Vector2(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);
@@ -299,7 +299,7 @@ public class Player : MonoBehaviour
     }
     private void Jump()
     {
-        AudioManager.instance.PlaySFX(3);
+        AudioManager.instance.PlaySFX(1);
 
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 

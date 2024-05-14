@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentPlayer == null)
         {
-            AudioManager.instance.PlaySFX(11);
+            AudioManager.instance.PlaySFX(1);
             currentPlayer = Instantiate(playerPrefab, respawnPoint.position, transform.rotation);
             currentPlayer.GetComponent<Player>().enabled = true;
         }
@@ -114,7 +114,7 @@ public class PlayerManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        AudioManager.instance.PlaySFX(0);
+        AudioManager.instance.PlaySFX(1);
 
         if (deathfx != null)
         {

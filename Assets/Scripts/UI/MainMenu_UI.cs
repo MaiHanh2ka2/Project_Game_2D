@@ -30,7 +30,7 @@ public class MainMenu_UI : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        AudioManager.instance.PlaySFX(4);
+        AudioManager.instance.PlaySFX(1);
         uiMenu.SetActive(true);
     }
 
