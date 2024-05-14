@@ -17,7 +17,7 @@ public class EndPoint : MonoBehaviour
             GetComponent<Animator>().SetTrigger("activate");
             Debug.Log("vao day");
             AudioManager.instance.PlaySFX(2);
-            PlayerManager.instance.KillPlayer();
+            //PlayerManager.instance.KillPlayer();// =)))))))))
 
             inGame_UI.OnLevelFinished();
 
