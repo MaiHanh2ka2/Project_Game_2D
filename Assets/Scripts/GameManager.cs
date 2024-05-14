@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveCollectionFruits()
     {
-        int totalFruits = PlayerPrefs.GetInt("TotalFruitsCollected");
+        int totalFruits = PlayerPrefs.GetInt("TotalFruitsCollected", 0);
 
         int newTotalFruits = totalFruits + PlayerManager.instance.fruits;
 

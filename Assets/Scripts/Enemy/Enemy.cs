@@ -22,7 +22,7 @@ public class Enemy : Danger
     protected bool wallDetected;
     protected bool groundDetected;
 
-    [HideInInspector] public bool invincible;
+     public bool invincible;
 
     [Header("Move info")]
     [SerializeField] protected float speed;

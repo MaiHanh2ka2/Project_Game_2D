@@ -2687,6 +2687,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 1567306180540625662, guid: 6422367eae9139b438c4b54aa49e59e8, type: 3}
   currentPlayer: {fileID: 0}
   chosenSkinId: 0
+  numberFruit: 0c0000000e0000000c0000001300000005000000
   inGameUI: {fileID: 0}
   fruitPrefab: {fileID: 3838928809865930427, guid: 03b0a1adb6376bb4c97a50317b48d8b3, type: 3}
   playerPrefab: {fileID: 1940365371292788766, guid: d6bfa9f36556e734e8e52cd0b21c97a9, type: 3}
@@ -8615,7 +8616,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelButton: {fileID: 8132647699113473555, guid: dd89b2233e0cefe4b9e34e83b2998583, type: 3}
   levelButtonParent: {fileID: 1711585046}
-  levelOpen: 01010101010101000000000000000000000000000000000000
+  levelOpen: 00000000000000000000000000000000000000000000000000
+  numberFruit: 0c0000000e0000000c0000001300000005000000
 --- !u!4 &1591007074
 Transform:
   m_ObjectHideFlags: 0

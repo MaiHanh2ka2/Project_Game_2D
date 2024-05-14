@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public GameObject currentPlayer;
     [HideInInspector] public int chosenSkinId;
 
+    [SerializeField] private int[] numberFruit;
     public InGame_UI inGameUI;
 
     [Header("Player info")]
