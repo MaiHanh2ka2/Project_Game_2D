@@ -22,7 +22,7 @@ public class Enemy : Danger
     protected bool wallDetected;
     protected bool groundDetected;
 
-     public bool invincible;
+    public bool invincible;
 
     [Header("Move info")]
     [SerializeField] protected float speed;
@@ -31,7 +31,7 @@ public class Enemy : Danger
 
 
     protected bool canMove = true;
-    protected bool aggresive;
+    public bool aggresive;
 
     protected virtual void Start()
     {
