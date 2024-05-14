@@ -40,25 +40,27 @@ public class Enemy_Trunk : Enemy
 
         if (playerDetected && retreatTimeCounter < 0)
             retreatTimeCounter = moveBackTime;
-
-        if (playerDetection.collider.GetComponent<Player>() != null)
+        if (playerDetection)
         {
-            if (attackCooldownCounter < 0)
+            if (playerDetection.collider.GetComponent<Player>() != null)
             {
-                attackCooldownCounter = attackCooldown;
-                anim.SetTrigger("attack");
-                canMove = false;
-            }
+                if (attackCooldownCounter < 0)
+                {
+                    attackCooldownCounter = attackCooldown;
+                    anim.SetTrigger("attack");
+                    canMove = false;
+                }
 
-            else if (playerDetection.distance < 3)
-                MoveBackwards(1.5f);
-        }
-        else
-        {
-            if (retreatTimeCounter > 0)
-                MoveBackwards(4);
+                else if (playerDetection.distance < 3)
+                    MoveBackwards(1.5f);
+            }
             else
-                WalkAround();
+            {
+                if (retreatTimeCounter > 0)
+                    MoveBackwards(4);
+                else
+                    WalkAround();
+            }
         }
 
         anim.SetFloat("xVelocity", rb.velocity.x);
