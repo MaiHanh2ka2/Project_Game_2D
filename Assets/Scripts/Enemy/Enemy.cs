@@ -88,6 +88,8 @@ public class Enemy : Danger
     {
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
+
+        // checks if the player is within the detection range of the enemy
         playerDetection = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, playerDistance, whatIsPlayer);
     }
 

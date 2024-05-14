@@ -150,7 +150,6 @@ public class Player : MonoBehaviour
                 {
                     AudioManager.instance.PlaySFX(1);
                     newEnemy.Damage();
-                    Debug.Log("111");
                     anim.SetBool("flipping", true);
                     Jump();
                 }

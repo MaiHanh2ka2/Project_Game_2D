@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CinemachineImpulseSource impulse;
     [SerializeField] private Vector3 shakeDirection;
     [SerializeField] private float forceMultiplier;
+    [SerializeField] CameraFollow cameraFollow;
     public void ScreenShake(int facingDir)
     {
         impulse.m_DefaultVelocity = new Vector3(shakeDirection.x * facingDir, shakeDirection.y) * forceMultiplier;
@@ -110,17 +111,19 @@ public class PlayerManager : MonoBehaviour
             AudioManager.instance.PlaySFX(1);
             currentPlayer = Instantiate(playerPrefab, respawnPoint.position, transform.rotation);
             currentPlayer.GetComponent<Player>().enabled = true;
+            cameraFollow = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<CameraFollow>();
         }
     }
 
     public void KillPlayer()
     {
         AudioManager.instance.PlaySFX(1);
-
+        cameraFollow.target = null;
         if (deathfx != null)
         {
             GameObject newDeathfx = Instantiate(deathfx, currentPlayer.transform.position, currentPlayer.transform.rotation);
             Destroy(newDeathfx, 0.5f);
+
        }
         StartCoroutine(OnDestroyPlayer());
     }
