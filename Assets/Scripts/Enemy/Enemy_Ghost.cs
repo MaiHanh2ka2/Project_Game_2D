@@ -25,7 +25,7 @@ public class Enemy_Ghost : Enemy
     {
         if (player == null)
         {
-            anim.SetTrigger("desappear");
+            anim.SetTrigger("disappear");
             return;
         }
 

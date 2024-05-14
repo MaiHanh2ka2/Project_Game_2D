@@ -5,8 +5,6 @@ public class Enemy_Bat : Enemy
     [Header("Bat specifics")]
     [SerializeField] private Transform[] idlePoint;
     [SerializeField] private float checkRadius;
-    //[SerializeField] private LayerMask whatIsPlayer;
-
     private bool playerDetected;
 
 
