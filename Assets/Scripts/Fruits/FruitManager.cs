@@ -6,9 +6,8 @@ public class FruitManager : MonoBehaviour
     [SerializeField] private Transform[] fruitPosition;
     [SerializeField] private GameObject fruitPrefab;
     [SerializeField] private bool randomFruits;
-    [SerializeField] int totalAmountOfFruits;
-    public int fruitIndex;
-    [SerializeField] int levelNumber;
+
+    private int fruitIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +33,11 @@ public class FruitManager : MonoBehaviour
 
             fruitPosition[i].GetComponent<SpriteRenderer>().sprite = null;
 
-           
-        }
-        levelNumber = GameManager.instance.levelNumber + 1;
-        totalAmountOfFruits = PlayerPrefs.GetInt("Level" + levelNumber + "TotalFruits");
+            int levelNumber = GameManager.instance.levelNumber;
+            int totalAmountOfFruits = PlayerPrefs.GetInt("Level" + levelNumber + "TotalFruits");
 
-        if (totalAmountOfFruits != fruitPosition.Length - 1)
-        {
-            PlayerPrefs.SetInt("Level" + levelNumber + "TotalFruits", fruitPosition.Length - 1);
-            PlayerPrefs.Save();
+            if (totalAmountOfFruits != fruitPosition.Length - 1)
+                PlayerPrefs.SetInt("Level" + levelNumber + "TotalFruits", fruitPosition.Length - 1);
         }
-            
     }
 }

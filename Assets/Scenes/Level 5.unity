@@ -918,7 +918,6 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -969,7 +968,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1007,7 +1006,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -1041,7 +1040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
@@ -1054,21 +1053,6 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4081dc7515e0df6488d77e1dc0b3a8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 1.5, z: -1}
-  moveSpeed: 10
 --- !u!1 &641508029
 GameObject:
   m_ObjectHideFlags: 0
@@ -15195,7 +15179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4126459012076206943, guid: 6e574391ca5b98c46a01973a5a14b0ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15829,10 +15813,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1179962549258814501, guid: c3a586a3db1b1e54488424a57bcc7ab0, type: 3}
-      propertyPath: fruitPosition.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3696742598936584326, guid: c3a586a3db1b1e54488424a57bcc7ab0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.3
@@ -16617,10 +16597,6 @@ PrefabInstance:
     - target: {fileID: 4126459012076206943, guid: 6e574391ca5b98c46a01973a5a14b0ec, type: 3}
       propertyPath: m_Name
       value: RoomCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126459012076206943, guid: 6e574391ca5b98c46a01973a5a14b0ec, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4483164755724490708, guid: 6e574391ca5b98c46a01973a5a14b0ec, type: 3}
       propertyPath: m_Follow

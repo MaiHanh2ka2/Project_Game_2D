@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform levelButtonParent;
 
     [SerializeField] private bool[] levelOpen;
-    [SerializeField] private int[] numberFruit;
 
     private void Start()
     {
@@ -57,7 +56,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 2; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            bool unlocked = PlayerPrefs.GetInt("Level" + i + "Unlocked", 0) == 1;
+            bool unlocked = PlayerPrefs.GetInt("Level" + i + "Unlocked") == 1;
 
             if (unlocked)
                 PlayerPrefs.SetInt("Level" + i + "Unlocked", 0);
@@ -75,7 +74,7 @@ public class LevelManager : MonoBehaviour
 
             if (!unlocked)
             {
-                SceneManager.LoadScene("Level " + (i - 1));
+                SceneManager.LoadScene("Level" + (i - 1));
                 return;
             }
         }
