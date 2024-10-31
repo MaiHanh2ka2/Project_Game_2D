@@ -54,7 +54,7 @@ public class Highscore_UI : MonoBehaviour
 
     public void SetupScore()
     {
-        highScoreValueTxt.text = "Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString(); 
+        highScoreValueTxt.text = "Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
-    
+
 }
