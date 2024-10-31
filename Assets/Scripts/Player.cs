@@ -245,7 +245,7 @@ public class Player : MonoBehaviour
         if (!canBeKnocked)
             return;
 
-        if (GameManager.instance.difficulty > 1)
+        if (GameManager.instance.difficulty > 1) //Difficulty control, only deal damage when diff > 1 (Normal, Hard)
             PlayerManager.instance.OnTakingDamage();
 
         PlayerManager.instance.ScreenShake(-facingDirection);
@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
 
     public void Push(float pushForce)
     {
-        rb.velocity = new Vector2(rb.velocity.x, pushForce);
+        rb.velocity = new Vector2(rb.velocity.x, pushForce); // trap
     }
 
     private void WallJump()

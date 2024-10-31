@@ -7,10 +7,10 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    [HideInInspector] public int fruits;
-    [HideInInspector] public Transform respawnPoint;
-    [HideInInspector] public GameObject currentPlayer;
-    [HideInInspector] public int chosenSkinId;
+    public int fruits;
+    public Transform respawnPoint;
+    public GameObject currentPlayer;
+    public int chosenSkinId;
 
     [SerializeField] private int[] numberFruit;
     public InGame_UI inGameUI;
@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Vector3 shakeDirection;
     [SerializeField] private float forceMultiplier;
     [SerializeField] CameraFollow cameraFollow;
+
+
     public void ScreenShake(int facingDir)
     {
         impulse.m_DefaultVelocity = new Vector3(shakeDirection.x * facingDir, shakeDirection.y) * forceMultiplier;
@@ -124,7 +126,7 @@ public class PlayerManager : MonoBehaviour
             GameObject newDeathfx = Instantiate(deathfx, currentPlayer.transform.position, currentPlayer.transform.rotation);
             Destroy(newDeathfx, 0.5f);
 
-       }
+        }
         StartCoroutine(OnDestroyPlayer());
     }
 

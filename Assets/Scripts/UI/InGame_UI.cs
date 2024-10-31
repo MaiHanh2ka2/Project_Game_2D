@@ -92,6 +92,7 @@ public class InGame_UI : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
+        GameManager.instance.SaveHighScore(GameManager.instance.currentScore); // save high score
     }
     public void ReLoadCurrentLevel()
     {

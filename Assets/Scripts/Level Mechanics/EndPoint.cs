@@ -15,18 +15,17 @@ public class EndPoint : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             GetComponent<Animator>().SetTrigger("activate");
-            Debug.Log("vao day");
             AudioManager.instance.PlaySFX(2);
-            //PlayerManager.instance.KillPlayer();// =)))))))))
+            //PlayerManager.instance.KillPlayer();
 
             inGame_UI.OnLevelFinished();
+            GameManager.instance.CalculateHighScore(); // tinh toan ra diem da nhan duoc hien tai
 
             Destroy(collision.gameObject);
 
             GameManager.instance.SaveBestTime();
             GameManager.instance.SaveCollectionFruits();
             GameManager.instance.SaveLevelInfo();
-           
         }
     }
 }

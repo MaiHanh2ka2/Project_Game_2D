@@ -16310,6 +16310,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1179962549258814501, guid: c3a586a3db1b1e54488424a57bcc7ab0, type: 3}
+      propertyPath: fruitIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179962549258814501, guid: c3a586a3db1b1e54488424a57bcc7ab0, type: 3}
       propertyPath: fruitPosition.Array.size
       value: 12
       objectReference: {fileID: 0}
