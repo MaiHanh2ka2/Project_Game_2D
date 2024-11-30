@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public int levelNumber;
     public static readonly string HIGHSCORE = "Highscore";
 
+    public int[] highScore;
+    private void OnEnable()
+    {
+        LoadHighScore();
+    }
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -53,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         startTime = false;
 
-        float lastTime = PlayerPrefs.GetFloat("Level" + levelNumber + "BestTime", 999);
+        float lastTime = PlayerPrefs.GetFloat("Level" + levelNumber + "BestTime",999);
 
         if (timer < lastTime)
             PlayerPrefs.SetFloat("Level" + levelNumber + "BestTime", timer);
@@ -79,17 +84,55 @@ public class GameManager : MonoBehaviour
 
         currentScore += score; // gan diem da tinh duoc vao bien currentScore
     }
-
-    public void SaveHighScore(int score)
+    public void SaveHighScore()
     {
-        int lastScore = PlayerPrefs.GetInt("HighScore", 0);
-        if (score > lastScore)
-        {
-            PlayerPrefs.SetInt("HighScore", score);
-        }
-        currentScore = 0;
+        string json = JsonUtility.ToJson(new Wrapper(highScore));
+        PlayerPrefs.SetString("HighScore", json);
+        PlayerPrefs.Save();
     }
 
+
+    public void LoadHighScore()
+    {
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            string json = PlayerPrefs.GetString("HighScore");
+            highScore = JsonUtility.FromJson<Wrapper>(json).array;
+        }
+        else
+        {
+            highScore = new int[] { 0, 0, 0 };    
+        }
+    }
+    [System.Serializable]
+    private class Wrapper
+    {
+        public int[] array;
+        public Wrapper(int[] array)
+        {
+            this.array = array;
+        }
+    }
+    public void SaveHighScore(int score)
+    {
+        currentScore = 0;
+        for (int i = 0; i < highScore.Length; i++)
+        {
+            if (score > highScore[i])
+            {
+                // Dịch chuyển các phần tử phía sau để tạo chỗ trống cho score
+                for (int j = highScore.Length - 1; j > i; j--)
+                {
+                    highScore[j] = highScore[j - 1];
+                }
+
+                // Thay thế phần tử tại vị trí i bằng score
+                highScore[i] = score;
+                break; // Chỉ cần thay thế một lần, nên thoát vòng lặp
+            }
+        }
+        SaveHighScore();
+    }
     public static List<int> GetListIntListFromString(string input)
     {
         string[] stringValues = input.Split(':'); // Phân tách chuỗi theo dấu ':'
@@ -175,6 +218,6 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit() 
     {
-        SaveHighScore(currentScore); // save high score
+        AddNewHighscore(currentScore); // save high score
     }
 }

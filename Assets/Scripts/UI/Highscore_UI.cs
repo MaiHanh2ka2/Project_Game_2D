@@ -7,13 +7,12 @@ using UnityEngine.UI;
 
 public class Highscore_UI : MonoBehaviour
 {
-    public TMP_Text highScoreValueTxt;
+    public TMP_Text[] highScoreValueTxt;
     public Text[] highscoreTexts;
 
     private void OnEnable()
     {
         SetupScore(); //Setup diem khi object duoc bat len
-        UpdateHighScore();
     }
 
     private List<int> LoadHighScores()
@@ -37,24 +36,16 @@ public class Highscore_UI : MonoBehaviour
 
     private void UpdateScoreToUI(List<int> highscores)
     {
-        for (int i = 0; i < highscoreTexts.Length; i++)
-        {
-            if (i < highscores.Count)
-            {
-                // Nếu có điểm cho vị trí này, cập nhật text
-                highscoreTexts[i].text = highscores[i].ToString();
-            }
-            else
-            {
-                // Nếu có ít điểm hơn số lượng thành phần Text, hiển thị "No Record!"
-                highscoreTexts[i].text = "No Record!";
-            }
-        }
+        SetupScore();
     }
 
     public void SetupScore()
     {
-        highScoreValueTxt.text = "Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+        int[] highScore = GameManager.instance.highScore;
+        for (int i = 0; i < highScore.Length; i++)
+        {
+            highScoreValueTxt[i].text = highScore[i].ToString();
+        }  
     }
 
 }

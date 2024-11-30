@@ -21,9 +21,9 @@ public class EndPoint : MonoBehaviour
             inGame_UI.OnLevelFinished();
             GameManager.instance.CalculateHighScore(); // tinh toan ra diem da nhan duoc hien tai
 
+            GameManager.instance.SaveBestTime();
             Destroy(collision.gameObject);
 
-            GameManager.instance.SaveBestTime();
             GameManager.instance.SaveCollectionFruits();
             GameManager.instance.SaveLevelInfo();
         }
